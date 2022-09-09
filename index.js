@@ -1,7 +1,6 @@
 const isAdult = function (age) {
   if (typeof age === 'number' && !isNaN(age) && age > 0) {
-    age >= 18 ? (verdict = true) : (verdict = false);
-    return verdict;
+    return age >= 18;
   }
   return null;
 };
@@ -11,8 +10,7 @@ const checkMultiplicity = function (num, mul) {
     typeof num === 'number' && !isNaN(num) && 
     typeof mul === 'number' && !isNaN(mul) && mul !== 0
   ) {
-    num % mul ? (verdict = false) : (verdict = true);
-    return verdict;
+    return !(num % mul);
   }
   return null;
 };
@@ -23,8 +21,7 @@ const isTrianglePossible = function (a, b, c) {
     typeof b === 'number' && !isNaN(b) && b > 0 && 
     typeof c === 'number' && !isNaN(c) && c > 0
   ) {
-    a + b > c && a + c > b && b + c > a ? (verdict = true) : (verdict = false);
-    return verdict;
+    return a + b > c && a + c > b && b + c > a;
   }
   return null;
 };
