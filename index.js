@@ -28,14 +28,14 @@ const arr14 = [1, 2, 3, [10, 20, 30, [100, 200, 300, [1000, 2000, 3000]]]];
 const concatArr = arr1.concat(arr2);
 const reverseArr = arr1.reverse();
 
-const pushArr = arr3.push(4, 5, 6);
-const unshiftArr = arr4.unshift(4, 5, 6);
+const pushArrLength = arr3.push(4, 5, 6);
+const unshiftArrLength = arr4.unshift(4, 5, 6);
 
 console.log(`Used arr5.shift(), returned element: ${arr5.shift()}`);
 console.log(`Used arr6.pop(), returned element: ${arr6.pop()}`);
 
 const slice1 = arr7.slice(0, 3);
-const slice2 = arr7.slice(3);
+const slice2 = arr7.slice(-2);
 
 arr7.splice(1, 2);
 console.log(`Used arr7.splice(1, 2), arr7 is shown below:`);
@@ -50,12 +50,14 @@ console.log(`Used arr9.splice(3, 0, 'a', 'b', 'c'), arr9 is shown below:`);
 console.log(arr9);
 
 arr10.splice(1, 0, 'a', 'b');
-arr10.splice(6, 0, 'c');
-arr10.splice(Infinity, 0, 'e');
+arr10.splice(-1, 0, 'c');
+arr10.splice(arr10.length, 0, 'e');
 console.log(`Used arr9.splice(3, 0, 'a', 'b', 'c'), arr9 is shown below:`);
 console.log(arr10);
 
-arr11.sort();
+arr11.sort(function (a, b) {
+  return a - b;
+});
 
 arr12.forEach(function (user) {
   console.log(
@@ -93,7 +95,7 @@ console.log(arr12);
 console.log(mapArr);
 
 const filterArr = arr13.filter(function (currentElement) {
-  return currentElement.age > 18 && currentElement.gender !== undefined;
+  return currentElement.age >= 18 && currentElement.gender !== undefined;
 });
 
 const flatArr = arr14.flat(Infinity);
