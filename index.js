@@ -13,6 +13,7 @@ const userProto = {
 First name: ${this.firstName}
 Last  name: ${this.lastName}`
     );
+    return `${this.firstName} ${this.lastName}`
   },
   logout: function () {
     this.isLoggedIn = false;
