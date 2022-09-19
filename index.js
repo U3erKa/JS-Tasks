@@ -1,10 +1,11 @@
 const strArray = ['str1', 'str2', 'str3', 'str4', 'str5', 'str6'];
 const numArray = [1, 3, 5, 7, 9, 11, 13, 14, 17, 19, 21, 23, 25];
 
-const numOfStrings = (arr) => arr.length;
+const numOfStrings = (arr) =>
+  arr.filter((element) => typeof element === 'string').length;
 
 const calculator = (sign, ...numbers) => {
-  switch (sign) {
+  switch (sign.trim()) {
     case '+':
       return numbers.reduce((result, currentNumber) => result + currentNumber);
     case '-':
@@ -18,6 +19,9 @@ const calculator = (sign, ...numbers) => {
   }
 };
 
+const biggestNumber = (...numbers) => Math.max(...numbers);
+
+/*
 const biggestNumber = (array) => {
   let i = 0;
   let biggest = array[0];
@@ -34,6 +38,7 @@ const biggestNumber = (array) => {
   recursion();
   return biggest;
 };
+*/
 
 console.log('numOfStrings()');
 console.log(numOfStrings(strArray)); // 6
@@ -49,7 +54,7 @@ console.log(calculator('/', 100, 5, 2, 10));
 console.log(calculator('', 100, 5, 2, 10));
 
 console.log('biggestNumber()');
-console.log(biggestNumber(numArray));
-console.log(biggestNumber([20, 10, 35, ...numArray]));
-console.log(biggestNumber([40, 10, 35, ...numArray]));
-console.log(biggestNumber([-40, -10, -35, ...numArray]));
+console.log(biggestNumber(...numArray));
+console.log(biggestNumber(20, 10, 35, ...numArray));
+console.log(biggestNumber(40, 10, 35, ...numArray));
+console.log(biggestNumber(-40, -10, -35, ...numArray));
