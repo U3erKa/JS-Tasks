@@ -59,10 +59,10 @@ class RangeValidator {
 
     for (let i = 0; i < this.range.length; i++) {
       if (this.range[i] === number) {
-        return true;
+        return number;
       }
     }
-    return false;
+    throw new RangeError(`${number} is not in the array`)
   }
 }
 
