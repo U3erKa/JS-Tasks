@@ -50,6 +50,17 @@ class MyArray {
     }
     return (this.length += value.length);
   }
+  reverse() {
+    let oldArray = new MyArray();
+    for (let i = 0; i < this.length; i++) {
+      oldArray.push(this[i]);
+    }
+    for (let i = 0; i < this.length; i++) {
+      this[i] = oldArray[this.length - i - 1];
+    }
+    return this;
+  }
+
   [Symbol.iterator]() {
     const context = this;
     let i = 0;
