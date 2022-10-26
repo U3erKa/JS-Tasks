@@ -19,18 +19,18 @@ const student = {
     email: 'u5er@email.com',
   },
   dateOfApplication: new Date(2016, 8),
+  group: group,
+  id: 69,
   // variant 1: return error
   get course() {
-    return new Date().getFullYear() - student.dateOfApplication.getFullYear() <= 5
-      ? new Date().getFullYear() - student.dateOfApplication.getFullYear()
+    return new Date().getFullYear() - this.dateOfApplication.getFullYear() <= 5
+      ? new Date().getFullYear() - this.dateOfApplication.getFullYear()
       : new RangeError('Graduated');
   },
-  id: 69,
-  __proto__: group,
   // variant 2: throw error
   // get course() {
-  //   if (new Date().getFullYear() - student.dateOfApplication.getFullYear() <= 5) {
-  //     return new Date().getFullYear() - student.dateOfApplication.getFullYear()
+  //   if (new Date().getFullYear() - this.dateOfApplication.getFullYear() <= 5) {
+  //     return new Date().getFullYear() - this.dateOfApplication.getFullYear()
   //   } else {
   //     throw new RangeError('Graduated');
   //   }
@@ -38,24 +38,36 @@ const student = {
 };
 
 function studentInfo(student) {
-  return {
-    fullName: `${student.firstName} ${student.lastName}`,
-    age: student.age,
-    contacts: student.contacts,
-    id: student.id,
-    university: student.university,
-    faculty: student.faculty,
-    chair: student.chair,
-    course: student.course,
-  };
+  const { 
+    firstName, lastName, age, id, course,
+    contacts: {phone, email}, 
+    group: {university, faculty, chair}
+  } = student;
+  return [
+    `fullName: ${firstName} ${lastName}`,
+    `age: ${age}`,
+    `id: ${id}`,
+    `university: ${university}`,
+    `faculty: ${faculty}`,
+    `chair: ${chair}`,
+    `course: ${course}`,
+    `phone: ${phone}`,
+    `email: ${email}`,
+  ];
+}
+
+function logStudentInfo(student) {
+  for (const string of studentInfo(student)) {
+    console.log(string);
+  }
 }
 
 //task 3
-let numArray = [],
-  evenIndexNumbers = [],
-  evenNumbers = [],
-  numZeroIndex = [],
-  negativeNumbers = 0;
+const numArray = [];
+const evenIndexNumbers = [];
+const evenNumbers = [];
+const numZeroIndex = [];
+let negativeNumbers = 0;
 
 for (let i = 0; i < 25; i++) {
   numArray[i] = Math.floor((Math.random() - 0.25) * 10);
@@ -239,8 +251,8 @@ function createBook(isEBook, valueId, alteredValue) {
 
 //task 5
 function fizzBuzzNumbers(number) {
-  let array = [];
-  for (let i = 1; i < number; i++) {
+  const array = [];
+  for (let i = 1; i <= number; i++) {
     if (!(i % 3) && !(i % 5)) {
       array[i - 1] = 'fizzbuzz';
     } else if (!(i % 3)) {
@@ -251,7 +263,7 @@ function fizzBuzzNumbers(number) {
       array[i - 1] = i;
     }
   }
-  return array;
+  console.log(array.join(', \n'));
 }
 
 //task 6
@@ -282,5 +294,7 @@ const serverResponse = {
   },
 };
 
-const { data: { data: users } } = serverResponse;
+const {
+  data: { data: users },
+} = serverResponse;
 const [, , user3, user4] = users;
