@@ -21,7 +21,7 @@ class Client {
         break;
       }
       default:
-        this.clientLevel = 'basic';
+        this.clientLevel = 'undefined';
         break;
     }
   }
@@ -34,11 +34,11 @@ class Client {
   }
 
   static finalPrice(client, price) {
-    for (const [key, value] of map) {
-      if (key === client.clientLevel) {
-        return price * ((100 - value.discount) / 100);
-      }
+    if (map.has(client.clientLevel)) {
+      const discount = map.get(client.clientLevel).discount;
+      return price * ((100 - discount) / 100);
     }
+    return price;
   }
 }
 
@@ -61,15 +61,8 @@ const bank = {
 
 const map = new Map();
 
-for (const { clientLevel: level } of clients) {
-  const { clientLevels: { basic, pro, platinum }, } = bank;
-  if (level === 'platinum') {
-    map.set(level, platinum);
-  } else if (level === 'pro') {
-    map.set(level, pro);
-  } else {
-    map.set(level, basic);
-  }
+for (const [level, discount] of Object.entries(bank.clientLevels)) {
+  map.set(level, discount);
 }
 
 for (const client of clients) {
