@@ -1,29 +1,9 @@
 'use strict';
 class Client {
-  constructor(fullName, clientLevelId = 0, balance = 0) {
+  constructor(fullName, clientLevel = null, balance = 0) {
     this.fullName = fullName;
-    this.clientLevelId = clientLevelId;
+    this.clientLevel = clientLevel;
     this.balance = balance;
-  }
-
-  set clientLevelId(id) {
-    switch (id) {
-      case 0: {
-        this.clientLevel = 'basic';
-        break;
-      }
-      case 1: {
-        this.clientLevel = 'pro';
-        break;
-      }
-      case 2: {
-        this.clientLevel = 'platinum';
-        break;
-      }
-      default:
-        this.clientLevel = 'undefined';
-        break;
-    }
   }
 
   buy(price) {
@@ -42,11 +22,17 @@ class Client {
   }
 }
 
+const clientLevels = {
+  basic: 'basic',
+  pro: 'pro',
+  platinum: 'platinum',
+};
+
 const clients = [
-  new Client('U1erKa', 0, 2000),
-  new Client('U2erKa', 1, 2000),
-  new Client('U3erKa', 2, 1000),
-  new Client('U4erKa', 3, 1000),
+  new Client('U1erKa', clientLevels.basic, 2000),
+  new Client('U2erKa', clientLevels.pro, 2000),
+  new Client('U3erKa', clientLevels.platinum, 1000),
+  new Client('U4erKa', clientLevels.undefined, 1000),
   new Client('U5erKa'),
 ];
 
