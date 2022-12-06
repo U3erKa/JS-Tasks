@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @param {...string} contacts e.g. links to social media
  * @returns {...HTMLLIElement}
  */
@@ -20,7 +20,7 @@ function createLinks(contacts) {
         alt: `${linkType} link`,
       },
     });
-    const a = createElement('a', { attributes: { href: href } }, linkPic);
+    const a = createElement('a', { attributes: { href } }, linkPic);
     const linkItem = createElement('li', { className: 'linkItem' }, a);
     linkItems.push(linkItem);
   }
